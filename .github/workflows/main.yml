@@ -1,10 +1,15 @@
 name: workflow Evento
 on:
   workflow_dispatch:
+    inputs:
+      exemplo-input:
+        type: string
+        description: "Teste de input"
+        required: true
 jobs:
   teste:
     runs-on: Ubuntu-latest
     steps:
      - name: Action de Teste
-       run: echo "Disparou o evento"
+       run: echo "${{ inputs.exemplo-input }}"
       
