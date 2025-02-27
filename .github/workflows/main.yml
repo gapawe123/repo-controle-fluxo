@@ -5,6 +5,6 @@ jobs:
   teste:
     runs-on: Ubuntu latest
     steps:
-    - name: Action de Teste
-      run: echo "Disparou o evento"
+     - name: Action de Teste
+       run: echo "Disparou o evento"
       
