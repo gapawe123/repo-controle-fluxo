@@ -1,9 +1,8 @@
 name: workflow Evento
 on:
-  push:
-    branches: [main, features/*]
-    paths: 
-      - "src/**"
+  pull_request: 
+    branches: ["main"]
+
 jobs:
   teste:
     runs-on: Ubuntu-latest
