@@ -1,19 +1,14 @@
-name: workflow matriz
+name: workflow concorrencia
+run-name: workflow concorrencia ${{ github.run_number }}
 on:
   workflow_dispatch:  
+concurrency: pipeline-aula  
 jobs:
-  exemplo-fluxo-execucao:
-    strategy:
-      matrix:
-        versao: [16,18,20]
-        plataforma: ["windows", "ubuntu"]
-    runs-on: "${{ matrix.plataforma }}-latest"
+  exemplo-fluxo-execucao-01:
+    runs-on: ubuntu-latest
     steps:
-      - name: Instalacao do node
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.versao }}
-      - name: Exibicao da versao da plataforma
+      - name: Execucao do job teste
         run: |
-          node --version
-          echo ${{ runner.os }}
+          sleep 120;
+          echo "Action executada job 01" 
+
