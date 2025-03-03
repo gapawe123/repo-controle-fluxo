@@ -1,24 +1,12 @@
 name: workflow Evento
 on:
-  workflow_dispatch: 
-    inputs:
-      valor_numerico:
-        type: number
-        default: 20
-      valor_string:
-        type: string
-        default: "valor XPTO"
-      valor_boolean:
-        type: boolean
-        default: true
+  push: 
 jobs:
-  teste:
-    permissions: write-all
-    runs-on: Ubuntu-latest
+  apenas-main:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    name: Esse Jobs so executa na branch main
+    runs-on: ubuntu-latest
     steps:
-     - name: Funcao Contains
-       run: echo "${{ contains(inputs.valor_string, github.actor) }}"
-     - name: Funcao Format
-       run: "echo ${{ format('Formato Stringe: {0} - Formato Number: {1} - Formato Boolean: {2}', inputs.valor_string, inputs.valor_numerico, inputs.valor_boolean) }}" 
-     - name: Funcao json
-       run: echo "${{ toJson(github) }}"
+      - name: Executando na main
+        run: echo "Executando comando na main" 
+ 
