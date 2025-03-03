@@ -16,10 +16,9 @@ jobs:
     permissions: write-all
     runs-on: Ubuntu-latest
     steps:
-     - name: Operacao com string
-       run: echo "${{ github.actor == inputs.valor_string }}"
-     - name: Operacao com number
-       run: echo "${{ inputs.valor_numerico > 20 }}"
-     - name: Operacao boolean
-       run: echo "${{ !inputs.valor_boolean }}" 
-      
+     - name: Funcao Contains
+       run: echo "${{ contains(inputs.valor_string, github.actor) }}"
+     - name: Funcao Format
+       run: "echo ${{ format('Formato Stringe: {0} - Formato Number: {1} - Formato Boolean: {2}', inputs.valor_string, inputs.valor_numerico, inputs.valor_boolean) }}" 
+     - name: Funcao json
+       run: echo "${{ toJson(github) }}"
