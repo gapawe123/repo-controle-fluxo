@@ -1,25 +1,19 @@
-name: workflow Evento
+name: workflow matriz
 on:
-  push: 
+  workflow_dispatch:  
 jobs:
-  apenas-main:
-    if: ${{ github.ref == 'refs/heads/main' }}
-    name: Esse Jobs so executa na branch main
-    runs-on: ubuntu-latest
+  exemplo-fluxo-execucao:
+    strategy:
+      matrix:
+        versao: [16,18,20]
+        plataforma: ["windows", "linux"]
+    runs-on: "${{ matrix.plataforma }}-latest"
     steps:
-      - name: Executando na main
-        run: echo "Executando comando na main" 
-  todos:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Execucao em Feature
-        if: ${{ contains(github.ref,'refs/heads/feature') }}
-        run: echo "Execucao em Feature"
-      - name: Execucao em HotFix
-        if: ${{ contains(github.ref,'refs/heads/hotfix') }}
-        run: echo "Execucao em hotfix"       
-      - name: Execucao em main
-        if: ${{ github.ref == 'refs/heads/main'}}
-        run: echo "Execucao em main"
-      - name: Execucao em todos
-        run: echo "Execucao em todos"
+      - name: Instalacao do node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.versao }}
+      - name: Exibicao da versao da plataforma
+        run: |
+          node --version
+          echo ${{ runner.os }}
