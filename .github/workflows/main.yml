@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         versao: [16,18,20]
-        plataforma: ["windows", "linux"]
+        plataforma: ["windows", "ubuntu"]
     runs-on: "${{ matrix.plataforma }}-latest"
     steps:
       - name: Instalacao do node
