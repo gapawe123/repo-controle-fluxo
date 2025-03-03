@@ -1,10 +1,11 @@
 name: workflow Evento
 on:
-  pull_request: 
-    branches: ["main"]
-
+  schedule:
+    - cron: "*/2 * * * *"
+    - cron: "0 12 1 * *"
 jobs:
   teste:
+    permissions: write-all
     runs-on: Ubuntu-latest
     steps:
      - name: Action de Teste
